@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a job application form for Aperture Science, Inc">
+    
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>Aperture Science | Job Application Form</title>
+</head>
+<body>
+    <div class="application">
+        <header>
+
+            <div class="wrapper--logo">
+                <div id="logo">
+                    <div class="triangle">
+                        <div class="triangle">
+                            <div class="triangle">
+                                <div class="triangle">
+                                    <div class="triangle">
+                                        <div class="triangle">
+                                            <div class="triangle">
+                                                <div class="triangle">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2>Aperture Science</h2>
+            </div>
+
+
+            <h1 id="title">Job Application Form</h1>
+            <p id="description">
+                They say great science is built on the shoulders of giants. Not here. At Aperture, we do all our science from scratch. No hand holding
+            </p>
+            <p id="author">
+                Cave Johnson
+            </p>
+        </header>
+
+        <main>
+            <form id="survey-form">
+
+                <div class="form-item form-item--name">
+                    <label for="name" id="name-label">Name</label>
+                    <input id="name" name="name" type="text" required placeholder="Input your name here"/>
+                </div>
+
+                <div class="form-item form-item--surname">
+                    <label for="surname" id="surname-label">Surname</label>
+                    <input id="surname" name="surname" type="text" required placeholder="Input your surname here"/>
+                </div>
+
+                <div class="form-item form-item--email">
+                    <label for="email" id="email-label">Email</label>
+                    <input id="email" name="email" required type="email" placeholder="Input your email here"/>
+                </div>
+
+                <div class="form-item form-item--age">
+                    <label for="number" id="number-label">Age</label>
+                    <input id="number" name="age" required type="number" min="18" max="78" placeholder="Input your age here"/>
+                </div>
+                
+                <div class="form-item form-item--position">
+                    <label for="dropdown" id="position-label">Job position</label>
+                    <select id="dropdown" name="position" onchange="this.dataset.chosen ='true';">
+                        <option selected disabled value="none">Select desirable job position</option>
+
+                        <option value="scientist">Scientist</option>
+                        <option value="engineer">Engineer</option>
+                        <option value="expendable">Test Volunteer</option>
+                        <option value="janitor">Janitor</option>
+                        <option value="any">Any</option>
+                    </select>
+                </div>
+
+                <div class="form-item form-item--fears">
+                    <fieldset>
+                        <legend>Which phobias do you have?</legend>
+
+                        <div class="fieldset-item fieldset-item--check">
+                            <input type="checkbox" value="math" name="fears" id="math">
+                            <label for="math">Arithmophobia</label>
+                        </div>
+
+                        <div class="fieldset-item fieldset-item--check">
+                            <input type="checkbox" value="gravity" name="fears" id="gravity">
+                            <label for="gravity">Barophobia</label>
+                        </div>
+
+                        <div class="fieldset-item fieldset-item--check">
+                            <input type="checkbox" value="computers" name="fears" id="computers">
+                            <label for="computers">Cyberphobia</label>
+                        </div>
+
+                        <div class="fieldset-item fieldset-item--check">
+                            <input type="checkbox" value="dentists" name="fears" id="dentists">
+                            <label for="dentists">Dentophobia</label>
+                        </div>
+                        
+                        <div class="fieldset-item fieldset-item--check">
+                            <input type="checkbox" value="work" name="fears" id="work">
+                            <label for="work">Ergophobia</label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-item form-item--performance">
+                    <fieldset>
+                        <legend>How hard are you prepared to work?</legend>
+
+                        <div class="fieldset-item fieldset-item--radio">
+                            <input type="radio" value="25" name="performance" id="p-25">
+                            <label for="p-25">25%</label>
+                        </div>
+
+                        <div class="fieldset-item fieldset-item--radio">
+                            <input type="radio" value="50" name="performance" id="p-50">
+                            <label for="p-50">50%</label>
+                        </div>
+                        
+                        <div class="fieldset-item fieldset-item--radio">
+                            <input type="radio" value="75" name="performance" id="p-75">
+                            <label for="p-75">75%</label>
+                        </div>
+
+                        <div class="fieldset-item fieldset-item--radio">        
+                            <input type="radio" value="100" name="performance" id="p-100">
+                            <label for="p-100">100%</label>
+                        </div>
+
+                        <div class="fieldset-item fieldset-item--radio">
+                            <input checked type="radio" value="200" name="performance" id="p-200">
+                            <label for="p-200">200%</label>
+                        </div>
+                        
+                    </fieldset>
+                </div>
+
+                <div class="form-item form-item--question">
+                    <label for="question" id="question-label">What will you do, if life gives you lemons?</label>
+                    <textarea required id="question" name="question"  placeholder="Input your answer here"></textarea>
+                </div>
+
+                <div class="form-item form-item--button">
+                    <button id="submit" type="submit">Submit</button>
+                </div>
+
+            </form>
+        </main>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

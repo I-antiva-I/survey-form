@@ -1,0 +1,176 @@
+// @use
+// Path to _filename.scss 
+// Notice how we don't include the underscore or file extension!
+
+@use "globals";
+@use "logo";
+
+body
+{
+    min-height: 100vh;
+    background-color: globals.$color-bg-body;
+    color: globals.$color-text;
+}
+
+.application
+{
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    max-width: globals.$max-width-mobile;
+
+    background-color: globals.$color-bg-application;
+    position: relative;
+}
+
+
+#title, #description, h3
+{
+    text-align: center;
+}
+#description
+{
+    margin: 0.5rem 0;
+    font-style: italic;
+    &::before
+    {
+        content: open-quote;
+    }
+    &::after
+    {
+        content: close-quote;
+    }
+}
+#author
+{
+    text-align: right;
+    font-weight: 700;
+    &::before
+    {
+        content: "-";
+    }
+}
+#survey-form
+{
+    margin-top: 0.75rem;
+}
+
+.form-item
+{
+    display: flex;
+    flex-direction: column;
+    
+    &--age
+    {
+        width: max(150px, 50%);
+    }
+    &--button
+    {
+        padding-top: 0.75rem;
+    }
+}
+.form-item + .form-item
+{
+    margin-top: 0.25rem;
+}
+
+input:not([type="checkbox"]),
+input:not([type="radio"]),
+select,
+textarea
+{
+    padding: 0.25rem 0.25rem;
+
+}
+
+#submit,
+select
+{
+    cursor: pointer;
+}
+
+
+// https://stackoverflow.com/questions/16344583/style-select-element-based-on-selected-option
+::placeholder,
+select,
+option:disabled
+{
+    font-style: italic;
+    color: gray;
+}
+
+
+option,
+select[data-chosen='true']
+{
+    font-style: normal;
+    color: black;
+}
+
+
+
+fieldset
+{
+    padding: 0.125rem 0.125rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+legend
+{
+    margin-left: 1rem;
+    padding: 0.25rem;
+}
+.fieldset-item
+{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+
+    &>*
+    {
+        cursor: pointer;
+    }
+}
+.fieldset-item
+{   
+    &--check,
+    &--radio
+    {
+        & label
+        {
+            margin-left: 1rem;
+        }
+        & input
+        {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+}
+
+#submit
+{
+    border: none;
+    padding: 0.25rem 0rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+#submit:hover
+{
+    border-left: 0.5rem solid dodgerblue;
+    border-right: 0.5rem solid dodgerblue;
+    background-color: steelblue;
+    color: white;
+}
+
+// https://stackoverflow.com/questions/17598996/sass-use-variables-across-multiple-files
+
+@media screen and (min-width: 900px) 
+{
+    .application
+    {
+        width: 75%;
+        max-width: globals.$max-width-desktop;
+    }
+}

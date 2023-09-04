@@ -1,0 +1,52 @@
+$size: 6px;
+$color: rgba(255,255,255, 1);
+
+#logo
+{   
+    font-size: $size;
+
+    display: flex;
+    padding: 0em;
+    border-radius: 100%;
+
+    $width-and-height: 8em;
+    width: $width-and-height;
+    height: $width-and-height;
+
+    position: relative;  
+    overflow: hidden;
+}
+
+.triangle
+{
+    position: absolute;
+    
+    width: 0;
+    height: 0;
+
+    border: 1.375em solid $color;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+
+    transform: rotate(45deg);
+    margin-left: 0.25rem;
+}
+
+#logo > .triangle:first-child
+{
+
+    border: 1.375em solid transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotate(75deg);
+
+    top: 2.5em;
+    left: 5.25em;
+}
+
+.wrapper--logo
+{
+    display: flex;
+    flex-direction: row;
+}
+

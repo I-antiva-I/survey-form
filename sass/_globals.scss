@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400;700&display=swap');
+
+// Variables 
+// Sizes
+$max-width-mobile: 400px;
+$max-width-desktop: 800px;
+// Colors
+$color-bg-body: #212121;
+$color-bg-application:  #424242;
+$color-text: white;
+
+
+*, *::after, *::before
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Titillium Web";
+}
+
+
