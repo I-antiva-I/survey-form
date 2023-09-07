@@ -1,13 +1,57 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400;700&display=swap');
 
-// Variables 
+// Variables should be defined there...
+
 // Sizes
-$max-width-mobile: 400px;
-$max-width-desktop: 800px;
-// Colors
-$color-bg-body: #212121;
-$color-bg-application:  #424242;
-$color-text: white;
+$max-width-mobile: 500px;
+$max-width-desktop: 1000px;
+
+// Colors 
+$color-portal-blue: deepskyblue;
+$color-portal-blue-dark: steelblue;
+$color-portal-orange: orange;
+$color-portal-orange-dark: peru;
+
+$color-black-light:  #424242;
+$color-black: #242424;
+$color-black-dark: #000000;
+
+$color-white-light: white;
+$color-white: silver;
+$color-white-dark: dimgray;
+
+@function postfixes($type: print)
+{
+    $result: "none";
+    @if $type == print
+    {
+        $result:
+        "&--name",
+        "&--surname",
+        "&--age",
+        "&--email",
+        ;
+    }
+    @else if $type == select
+    {
+        $result:
+        "&--position";
+    }
+    @else if $type == area
+    {
+        $result:
+        "&--question";
+    }
+    @else if $type == check 
+    {
+        $result:
+        "&--performance",
+        "&--fears";
+    }
+
+    @return $result;
+}
+  
 
 
 *, *::after, *::before
