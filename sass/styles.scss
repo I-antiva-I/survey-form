@@ -1,36 +1,101 @@
+// https://stackoverflow.com/questions/17598996/sass-use-variables-across-multiple-files
+// https://moderncss.dev/pure-css-custom-checkbox-style/
+// https://stackoverflow.com/questions/16344583/style-select-element-based-on-selected-option
+// https://stackoverflow.com/questions/7208786/how-to-style-the-option-of-an-html-select-element
+
+
 // @use
 // Path to _filename.scss 
-// Notice how we don't include the underscore or file extension!
-
+// Do not include the underscore or file extension!
 @use "globals";
+@use "mixins";
 @use "logo";
+
+// When using variables in new versions
+// --css-var: #{scss-expression...};
+
+
+// Themes
+html[selected-theme="dark"] 
+{
+    @include mixins.theme(dark);
+    & #theme-changer
+    {
+        background-color: globals.$color-portal-blue-dark;
+    }
+    & .button--theme
+    {
+        margin-left: 2rem;
+        & .button__svg--sun
+        {
+            display: none;
+        }
+    }
+}
+html[selected-theme="light"]
+{
+    @include mixins.theme(light);
+    & #theme-changer
+    {
+        background-color: globals.$color-portal-orange-dark;
+    }
+    & .button--theme
+    {
+        margin-right: 2rem;
+        & .button__svg--moon
+        {
+            display: none;;
+        }
+    }
+}
 
 body
 {
     min-height: 100vh;
-    background-color: globals.$color-bg-body;
-    color: globals.$color-text;
+    background-color: var(--color-background-body);
+    color: var(--color-text-default);
 }
 
 .application
 {
-    margin: 2rem auto;
-    padding: 1rem 2rem;
+    position: relative;
+
+    margin: 0rem auto 1rem;
+
     max-width: globals.$max-width-mobile;
 
-    background-color: globals.$color-bg-application;
-    position: relative;
+    background-color: var(--color-background-application);
+
+    @include mixins.border("", 2px);
+    overflow: hidden;
 }
 
+// Header
+.wrapper--logo
+{
+    margin-bottom: 0.5rem;
+    padding: 1.25rem 2rem;
 
-#title, #description, h3
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    background-color: var(--color-background-wrapper);
+}
+
+#title, #description
 {
     text-align: center;
 }
+
 #description
 {
     margin: 0.5rem 0;
+    padding: 0 2rem;
+
     font-style: italic;
+
     &::before
     {
         content: open-quote;
@@ -40,25 +105,80 @@ body
         content: close-quote;
     }
 }
+
 #author
 {
+    padding: 0 2rem;
+
     text-align: right;
-    font-weight: 700;
+    @include mixins.font(highlighted);
+
     &::before
     {
         content: "-";
     }
 }
+
+#theme-changer
+{
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.25rem;
+
+    @include mixins.border("", 4px);
+}
+
+.button
+{
+    cursor: pointer;
+}
+
+.button--theme
+{
+    width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+
+    background-color: var(--color-background-wrapper);
+    @include mixins.border("none", 4px);
+
+    transition: margin 0.25s ease-in-out;
+    &:hover
+    {
+        background-color: var(--color-background-application);
+    }
+}
+
+// Main
+main
+{
+    padding: 0 2rem 2rem;
+}
+
+// Form
 #survey-form
 {
     margin-top: 0.75rem;
+}
+
+.form-item + .form-item
+{
+    margin-top: 0.25rem;
 }
 
 .form-item
 {
     display: flex;
     flex-direction: column;
-    
+    justify-content: center;
+    align-items: stretch;
+
+    // Items modifiers
     &--age
     {
         width: max(150px, 50%);
@@ -67,110 +187,305 @@ body
     {
         padding-top: 0.75rem;
     }
-}
-.form-item + .form-item
-{
-    margin-top: 0.25rem;
-}
 
-input:not([type="checkbox"]),
-input:not([type="radio"]),
-select,
-textarea
-{
-    padding: 0.25rem 0.25rem;
-
-}
-
-#submit,
-select
-{
-    cursor: pointer;
-}
-
-
-// https://stackoverflow.com/questions/16344583/style-select-element-based-on-selected-option
-::placeholder,
-select,
-option:disabled
-{
-    font-style: italic;
-    color: gray;
-}
-
-
-option,
-select[data-chosen='true']
-{
-    font-style: normal;
-    color: black;
-}
-
-
-
-fieldset
-{
-    padding: 0.125rem 0.125rem 0.5rem;
-    display: flex;
-    flex-direction: column;
-
-    
-}
-legend
-{
-    margin-left: 1rem;
-    padding: 0.25rem;
-}
-.fieldset-item
-{
-    display: flex;
-    align-items: center;
-    margin-left: 1rem;
-
-    &>*
+    // Header labels
+    &>label
     {
-        cursor: pointer;
+        padding: 0.125rem 0rem;
     }
-}
-.fieldset-item
-{   
-    &--check,
-    &--radio
+    &:hover,
+    &:focus-within
     {
-        & label
+        &>label
         {
-            margin-left: 1rem;
+            @include mixins.font(highlighted);
         }
+    }
+
+    // Inputs
+    #{globals.postfixes(print)}
+    {
+        // Default
         & input
         {
-            width: 1rem;
-            height: 1rem;
+            padding: 0.25rem 0.25rem;
+
+            @include mixins.border("default", 4px);
+            @include mixins.font("input");
+
+            &::placeholder
+            {
+                @include mixins.font("placeholder");
+            }
+            &:focus
+            {
+                @include mixins.outline("highlighted");
+            }
         }
+    }
+
+    // Select
+    #{globals.postfixes(select)}
+    {
+        & select
+        {
+            @include mixins.border("default");
+     
+            padding: 0.25rem 0.25rem;
+            border-radius: 4px;
+            &:focus
+            {
+                @include mixins.outline("highlighted");
+            }
+        }
+    }
+
+    // Text area
+    #{globals.postfixes(area)}
+    {
+       & textarea
+        {
+            @include mixins.border("default");
+            @include mixins.font("input");
+
+            padding: 0.25rem 0.25rem;
+            border-radius: 4px;
+            outline: none;
+        
+            &::placeholder
+            {
+                @include mixins.font(placeholder);
+            }
+            &:focus
+            {
+                @include mixins.outline("highlighted");
+            }
+        }
+    }    
+
+    // Checkboxes and radios
+    #{globals.postfixes(check)}
+    {
+        // Checkboxes
+        & input[type="checkbox"]
+        {
+            @include mixins.customCheckbox();
+        }
+        // Radios
+        & input[type="radio"]
+        {
+            @include mixins.customRadio();
+        }
+        .container-label
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & > *
+            {
+                cursor: pointer;
+            }
+        
+            &__text
+            {
+                margin-left: 0.75rem;
+            }
+        }
+
+        // Checked text
+        input:checked ~ span
+        {
+            @include mixins.font("highlighted");
+        }
+        fieldset
+        {
+            padding: 0.125rem 0.125rem 0.5rem;
+            display: flex;
+            flex-direction: column;  
+            @include mixins.border("default", 4px);
+        }
+        legend
+        {
+            margin: 0 1rem;
+            padding: 0.25rem;
+            @include mixins.font("default");
+        }
+        .fieldset-item
+        {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        &:hover
+        {
+            legend
+            {
+                @include mixins.font("highlighted");
+            }
+        }
+        &:focus-within,
+        &:active
+        {
+            legend
+            {
+                @include mixins.font("highlighted");
+            }
+            fieldset
+            {
+                @include mixins.border("highlighted", 4px);
+            }
+        }
+    }
+
+    // Placeholder for select
+    select,
+    option:disabled
+    {
+        @include mixins.font(placeholder);
+    }
+    option,
+    select[data-chosen="true"]
+    {
+        @include mixins.font(input);
     }
 }
 
-#submit
+.button--submit
 {
+    padding: 0.375rem 0rem;
+
     border: none;
-    padding: 0.25rem 0rem;
+  
     font-size: 1.25rem;
     font-weight: 700;
+
+    background-color: var(--color-accent-sub-dark);
+    color: globals.$color-white-light;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    border-right: 0.5rem solid var(--color-accent-sub);
+    border-left: 0.5rem solid var(--color-accent-sub);
+
+    &:hover,
+    &:focus
+    {
+        background-color: var(--color-accent-main-dark);
+        border-right: 0.5rem solid var(--color-accent-main);
+        border-left: 0.5rem solid var(--color-accent-main);
+    }
 }
-#submit:hover
+
+// Color transition
+.application, .wrapper--logo
 {
-    border-left: 0.5rem solid dodgerblue;
-    border-right: 0.5rem solid dodgerblue;
-    background-color: steelblue;
-    color: white;
+    transition: background-color 500ms ease-in-out;
 }
 
-// https://stackoverflow.com/questions/17598996/sass-use-variables-across-multiple-files
-
-@media screen and (min-width: 900px) 
+// Media queries
+@media screen and (min-width: 1000px) 
 {
     .application
     {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
         width: 75%;
         max-width: globals.$max-width-desktop;
     }
+    #survey-form
+    {
+  
+        display: grid;
+        justify-content: stretch;
+        align-items: stretch;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "NAME SURNAME"
+            "EMAIL AGE"
+            "POSITION ."
+            "FEARS PERF"
+            "QUESTION QUESTION"
+            "BUTTON BUTTON"
+            ;
+        gap: 0.5rem;
+    }
+    .form-item
+    {
+        &--name
+        {
+            grid-area: NAME;
+        }
+        &--surname
+        {
+            grid-area: SURNAME;
+        }
+        &--email
+        {
+            grid-area: EMAIL;
+        }
+        &--age
+        {
+            grid-area: AGE;
+        }
+        &--position
+        {
+            grid-area: POSITION;
+        }
+        &--fears
+        {
+            grid-area: FEARS;
+        }
+        &--performance
+        {
+            grid-area: PERF;
+        }
+        &--question
+        {
+            grid-area: QUESTION;
+            textarea
+            {
+                height: 8rem;
+            }
+        }
+        &--button
+        {
+            grid-area: BUTTON;
+        }
+    }
+
+    .form-item + .form-item
+    {
+        margin-top: 0rem;
+    }
+  
 }
+
+/* 
+// SCSS examples
+.test
+{
+    & a
+    {
+        color: red;
+    }
+    b
+    {
+        color: red;
+    }
+    &:c
+    {
+        color: red;
+    }
+    & :d
+    {
+        color: red;
+    }
+    #{&}--e f
+    {
+        color: red;
+    } 
+}
+*/
