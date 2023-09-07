@@ -1,0 +1,191 @@
+@use "globals";
+// Mixins should be defined there...
+
+@mixin border($type: "default", $radius: 0px)
+{
+    // Border
+    @if $type == "default"
+    {
+        border: 2px solid var(--color-border);
+    }
+    @else if $type == "highlighted"
+    {
+        border: 2px solid var(--color-accent-main);
+    }
+    @else if $type == "none"
+    {
+        border: none;
+    }
+
+    // Radius
+    @if $radius != 0px
+    {
+        border-radius: $radius;
+    }
+}
+
+@mixin outline($type: "default")
+{
+    // Border
+    @if $type == "default"
+    {
+        outline: 2px solid globals.$color-white-light;
+    }
+    @else if $type == "highlighted"
+    {
+        outline: 2px solid var(--color-accent-main);
+    }
+    @else if $type == "none"
+    {
+        outline: none;
+    }
+}
+
+@mixin font($type: "default")
+{
+    @if $type == "default"
+    {
+        color:  var(--color-text-default);
+        font-size: 1rem;
+        font-weight: 400;
+        font-style: normal;
+    }
+    @else if $type == "highlighted"
+    {
+        color:  var(--color-accent-main);
+        font-size: 1rem;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: 0.5px; 
+    }
+    @else if $type == "input"
+    {
+        color:  globals.$color-black;
+        font-size: 0.875rem;
+        font-weight: 700;
+        font-style: normal;
+    }
+    @else if $type == "placeholder"
+    {
+        color:  globals.$color-white-dark;
+        font-size: 0.875rem;
+        font-weight: 400;
+        font-style: italic;
+    }
+}
+
+// input[type="checkbox"] 
+@mixin customCheckbox()
+{
+    appearance: none;
+
+    display: grid;
+    place-content: center;
+    
+    width: 1rem;
+    height: 1rem;
+
+    background-color: globals.$color-white-light;
+
+    @include border("default", 4px);
+    border-color: var(--color-border-check-radio);
+    @include outline("default");
+
+    &:checked
+    {
+        background-color: var(--color-accent-main);
+        border-color: var(--color-background-application);
+        @include outline("highlighted");
+        // outline offset?
+
+        &::before
+        {
+            content: "";
+            background-color: globals.$color-white-light;
+            min-width: 0.5rem;
+            min-height: 0.5rem;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        + span
+        {
+            color: var(--color-accent-main);
+        }
+        &:focus
+        {
+            @include outline("highlighted");
+        }
+    }
+}
+
+// input[type="radio"] 
+@mixin customRadio()
+{
+    appearance: none;
+
+    margin: 0;
+
+    width: 1rem;
+    height: 1rem;
+
+    background-color: globals.$color-white-light;
+
+    @include border("default", 100%);
+    border-color: var(--color-border-check-radio);
+    @include outline("default");
+
+    &:checked
+    {
+        background-color: var(--color-accent-main);
+        border-color: var(--color-background-application);
+        @include outline("highlighted");
+
+        + span
+        {
+            color: var(--color-accent-main);
+        }
+    }
+    &:focus
+    {
+        @include outline("highlighted");
+        // outline offset?
+    }
+
+}
+
+// Themes
+@mixin theme($theme: dark)
+{
+    @if $theme == dark
+    {
+        --color-background-body: #{globals.$color-black-dark};
+        --color-background-application: #{globals.$color-black-light};
+        --color-background-wrapper: #{globals.$color-white-light};
+
+        --color-text-default: #{globals.$color-white-light};
+        --color-text-alt: #{globals.$color-black-dark};
+        --color-border: #{globals.$color-white-dark};
+        --color-border-check-radio: #{globals.$color-black-light};
+        
+        --color-accent-main: #{globals.$color-portal-orange};
+        --color-accent-main-dark: #{globals.$color-portal-orange-dark};
+        --color-accent-sub: #{globals.$color-portal-blue};
+        --color-accent-sub-dark: #{globals.$color-portal-blue-dark};
+    }
+    @else if $theme == light
+    {
+        --color-background-body: #{globals.$color-white};
+        --color-background-application: #{globals.$color-white-light};
+        --color-background-wrapper: #{globals.$color-black};
+
+        --color-text-default: #{globals.$color-black-dark};
+        --color-text-alt: #{globals.$color-white-light};
+        --color-border: #{globals.$color-white-dark};
+        --color-border-check-radio: #{globals.$color-white-dark};
+
+        --color-accent-main: #{globals.$color-portal-blue};
+        --color-accent-main-dark:  #{globals.$color-portal-blue-dark};
+        --color-accent-sub: #{globals.$color-portal-orange};
+        --color-accent-sub-dark: #{globals.$color-portal-orange-dark};
+    }
+}
