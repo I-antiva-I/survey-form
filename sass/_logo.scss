@@ -1,20 +1,24 @@
-$size: 6px;
-$color: rgba(255,255,255, 1);
+$size: 8px;
+$color: var(--color-accent-sub);
 
 #logo
 {   
     font-size: $size;
 
+    box-sizing: content-box;
     display: flex;
-    padding: 0em;
+
     border-radius: 100%;
 
     $width-and-height: 8em;
-    width: $width-and-height;
-    height: $width-and-height;
+    min-width: $width-and-height;
+    min-height: $width-and-height;
+    max-width: $width-and-height;
+    max-height: $width-and-height;
 
     position: relative;  
     overflow: hidden;
+    transform: rotate(30deg);
 }
 
 .triangle
@@ -29,24 +33,41 @@ $color: rgba(255,255,255, 1);
     border-bottom-color: transparent;
 
     transform: rotate(45deg);
-    margin-left: 0.25rem;
+    margin-left: 0.375em;
 }
 
 #logo > .triangle:first-child
 {
-
     border: 1.375em solid transparent;
     border-left-color: transparent;
     border-bottom-color: transparent;
-    transform: rotate(75deg);
 
-    top: 2.5em;
-    left: 5.25em;
+    top: 1.25em;
+    left: 4.75em;
 }
 
-.wrapper--logo
+#logo__text
 {
-    display: flex;
-    flex-direction: row;
+    position: relative;
+    color: transparent;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-style: italic;
+    transform: translateX(-0.375em) translateY(+0.125em);
 }
 
+.text--aperture
+{
+    color: $color;
+    font-size: 1.375em;
+    letter-spacing: 1px;
+}
+
+.text--science
+{
+    height: 0em;
+    color: $color;
+    font-size: 0.625em;
+    letter-spacing: 2px;
+    transform: translateX(+0.25em) translateY(-0.5em);
+}
