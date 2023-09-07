@@ -12,8 +12,8 @@
 <body>
     <div class="application">
         <header>
-
             <div class="wrapper--logo">
+                 <!-- APERTURE LOGO -->
                 <div id="logo">
                     <div class="triangle">
                         <div class="triangle">
@@ -32,10 +32,26 @@
                         </div>
                     </div>
                 </div>
-                <h2>Aperture Science</h2>
+                <!-- APERTURE TEXT -->
+                <div id="logo__text">
+                    <div class="text--aperture">Aperture</div>
+                    <div class="text--science">Science</div>        
+                </div>
+                <!--DARK/LIGHT THEME-->
+                <div id="theme-changer">
+                    <button class="button button--theme" onclick="switchTheme()">
+                        <svg class="button__svg button__svg--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path fill="orange" d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/>
+                        </svg>
+                        <svg class="button__svg button__svg--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path transform="translate(64, 0)" fill="deepskyblue" d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-
-
+            <!-- TITLE AND DESC -->
             <h1 id="title">Job Application Form</h1>
             <p id="description">
                 They say great science is built on the shoulders of giants. Not here. At Aperture, we do all our science from scratch. No hand holding
@@ -68,6 +84,7 @@
                     <input id="number" name="age" required type="number" min="18" max="78" placeholder="Input your age here"/>
                 </div>
                 
+                <!-- SELECT -->
                 <div class="form-item form-item--position">
                     <label for="dropdown" id="position-label">Job position</label>
                     <select id="dropdown" name="position" onchange="this.dataset.chosen ='true';">
@@ -81,64 +98,86 @@
                     </select>
                 </div>
 
+                <!-- CHECKBOXES -->
                 <div class="form-item form-item--fears">
                     <fieldset>
                         <legend>Which phobias do you have?</legend>
 
                         <div class="fieldset-item fieldset-item--check">
-                            <input type="checkbox" value="math" name="fears" id="math">
-                            <label for="math">Arithmophobia</label>
+                            <label for="math" class="container-label">
+                                <input type="checkbox" value="math" name="fears" id="math">
+                                <span class="container-label__text">Arithmophobia</span>
+                            </label>
                         </div>
 
                         <div class="fieldset-item fieldset-item--check">
-                            <input type="checkbox" value="gravity" name="fears" id="gravity">
-                            <label for="gravity">Barophobia</label>
+                            <label for="gravity" class="container-label">
+                                <input type="checkbox" value="gravity" name="fears" id="gravity">
+                                <span class="container-label__text">Barophobia</span>
+                            </label>
                         </div>
 
                         <div class="fieldset-item fieldset-item--check">
-                            <input type="checkbox" value="computers" name="fears" id="computers">
-                            <label for="computers">Cyberphobia</label>
+                            <label for="computers" class="container-label">
+                                <input type="checkbox" value="computers" name="fears" id="computers">
+                                <span class="container-label__text">Cyberphobia</span>
+                            </label>
                         </div>
 
                         <div class="fieldset-item fieldset-item--check">
-                            <input type="checkbox" value="dentists" name="fears" id="dentists">
-                            <label for="dentists">Dentophobia</label>
+                            <label for="dentists" class="container-label">
+                                <input type="checkbox" value="dentists" name="fears" id="dentists">
+                                <span class="container-label__text">Dentophobia</span>
+                            </label>
                         </div>
                         
                         <div class="fieldset-item fieldset-item--check">
-                            <input type="checkbox" value="work" name="fears" id="work">
-                            <label for="work">Ergophobia</label>
+                            <label for="work" class="container-label">
+                                <input type="checkbox" value="work" name="fears" id="work">
+                                <span class="container-label__text">Ergophobia</span>
+                            </label>
                         </div>
                     </fieldset>
                 </div>
 
+                <!-- RADIOS -->
                 <div class="form-item form-item--performance">
                     <fieldset>
                         <legend>How hard are you prepared to work?</legend>
 
                         <div class="fieldset-item fieldset-item--radio">
-                            <input type="radio" value="25" name="performance" id="p-25">
-                            <label for="p-25">25%</label>
+                            <label for="perf-25" class="container-label">
+                                <input type="radio" value="25" name="performance" id="perf-25">
+                                <span class="container-label__text">25%</span>
+                            </label>
                         </div>
 
                         <div class="fieldset-item fieldset-item--radio">
-                            <input type="radio" value="50" name="performance" id="p-50">
-                            <label for="p-50">50%</label>
+                            <label for="perf-50" class="container-label">
+                                <input type="radio" value="50" name="performance" id="perf-50">
+                                <span class="container-label__text">50%</span>
+                            </label>
                         </div>
                         
                         <div class="fieldset-item fieldset-item--radio">
-                            <input type="radio" value="75" name="performance" id="p-75">
-                            <label for="p-75">75%</label>
+                            <label for="perf-75" class="container-label">
+                                <input type="radio" value="75" name="performance" id="perf-75">
+                                <span class="container-label__text">75%</span>
+                            </label>
                         </div>
 
                         <div class="fieldset-item fieldset-item--radio">        
-                            <input type="radio" value="100" name="performance" id="p-100">
-                            <label for="p-100">100%</label>
+                            <label for="perf-100" class="container-label">
+                                <input type="radio" value="100" name="performance" id="perf-100">
+                                <span class="container-label__text">100%</span>
+                            </label>
                         </div>
 
                         <div class="fieldset-item fieldset-item--radio">
-                            <input checked type="radio" value="200" name="performance" id="p-200">
-                            <label for="p-200">200%</label>
+                            <label for="perf-200" class="container-label">
+                                <input checked type="radio" value="200" name="performance" id="perf-200">
+                                <span class="container-label__text">200%</span>
+                            </label>
                         </div>
                         
                     </fieldset>
@@ -150,15 +189,50 @@
                 </div>
 
                 <div class="form-item form-item--button">
-                    <button id="submit" type="submit">Submit</button>
+                    <button type="submit" class="button button--submit">Submit</button>
                 </div>
 
             </form>
         </main>
 
         <footer>
-
         </footer>
     </div>
+
+    <script>
+        const html = document.firstElementChild;
+        let currentTheme = "dark";
+
+        if (window.matchMedia)
+        {
+            if (window.matchMedia('(prefers-color-scheme: light)').matches)
+            {
+                currentTheme = "light";
+            }
+        }
+
+        const setTheme = (theme) =>
+        {
+            html.setAttribute("selected-theme", theme)
+        }
+
+        const switchTheme = () =>
+        {
+            if (currentTheme == "light")
+            {
+                currentTheme = "dark";
+            }
+            else
+            {
+                currentTheme = "light";
+            }
+            console.log("Switching to", currentTheme)
+            setTheme(currentTheme);
+        }
+
+        setTheme(currentTheme);
+
+    </script>
+
 </body>
 </html>
