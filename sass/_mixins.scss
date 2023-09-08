@@ -85,11 +85,13 @@
     width: 1rem;
     height: 1rem;
 
-    background-color: globals.$color-white-light;
+    background-color: var(--color-background-check-radio);
 
     @include border("default", 4px);
     border-color: var(--color-border-check-radio);
+
     @include outline("default");
+    outline-color: var(--color-outline-check-radio);
 
     &:checked
     {
@@ -128,11 +130,13 @@
     width: 1rem;
     height: 1rem;
 
-    background-color: globals.$color-white-light;
+    background-color: var(--color-background-check-radio);
 
     @include border("default", 100%);
     border-color: var(--color-border-check-radio);
+
     @include outline("default");
+    outline-color: var(--color-outline-check-radio);
 
     &:checked
     {
@@ -164,8 +168,12 @@
 
         --color-text-default: #{globals.$color-white-light};
         --color-text-alt: #{globals.$color-black-dark};
+
         --color-border: #{globals.$color-white-dark};
+
         --color-border-check-radio: #{globals.$color-black-light};
+        --color-background-check-radio: #{globals.$color-white-light};
+        --color-outline-check-radio: #{globals.$color-white-light};
         
         --color-accent-main: #{globals.$color-portal-orange};
         --color-accent-main-dark: #{globals.$color-portal-orange-dark};
@@ -180,8 +188,12 @@
 
         --color-text-default: #{globals.$color-black-dark};
         --color-text-alt: #{globals.$color-white-light};
+
         --color-border: #{globals.$color-white-dark};
-        --color-border-check-radio: #{globals.$color-white-dark};
+
+        --color-border-check-radio: #{globals.$color-white-light};
+        --color-background-check-radio: #{globals.$color-white};
+        --color-outline-check-radio: #{globals.$color-white};
 
         --color-accent-main: #{globals.$color-portal-blue};
         --color-accent-main-dark:  #{globals.$color-portal-blue-dark};
